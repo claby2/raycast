@@ -6,9 +6,9 @@ struct Position {
     int y;
 };
 
-struct FloatPosition {
-    float x;
-    float y;
+struct DoublePosition {
+    double x;
+    double y;
 };
 
 // Check if the two given positions are equal

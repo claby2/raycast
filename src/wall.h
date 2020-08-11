@@ -3,7 +3,7 @@
 
 #include "position.h"
 
-#define number_of_walls 10
+#define NUMBER_OF_WALLS 10
 
 struct Wall {
     struct Position start;
@@ -12,5 +12,7 @@ struct Wall {
 
 // Return a wall with a random start and end position
 const struct Wall get_random_wall();
+
+void generate_walls(struct Wall *walls);
 
 #endif

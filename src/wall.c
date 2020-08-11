@@ -16,3 +16,9 @@ const struct Wall get_random_wall() {
     wall.end.y = (rand() % maximum_y);
     return wall;
 }
+
+void generate_walls(struct Wall *walls) {
+    for (size_t i = 0; i < NUMBER_OF_WALLS; ++i) {
+        walls[i] = get_random_wall();
+    }
+}

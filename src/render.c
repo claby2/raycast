@@ -15,7 +15,7 @@ struct Color {
     uint8_t alpha;
 };
 
-const float TWO_PI = 2 * M_PI;
+const double TWO_PI = 2 * M_PI;
 
 SDL_Renderer* renderer = NULL;
 SDL_Window* window = NULL;
@@ -59,7 +59,7 @@ void render_player(struct Player player) {
 
 void render_walls(struct Wall walls[]) {
     set_color(wall_color);
-    for (size_t i = 0; i < number_of_walls; ++i) {
+    for (size_t i = 0; i < NUMBER_OF_WALLS; ++i) {
         struct Wall wall = walls[i];
         SDL_RenderDrawLine(renderer, wall.start.x, wall.start.y, wall.end.x,
                            wall.end.y);
@@ -72,29 +72,29 @@ void render_ray(struct Position position1, struct Position position2) {
                        position2.y);
 }
 
-void render_rays(const float step, const float maximum_factor,
+void render_rays(const double step, const double maximum_factor,
                  struct Wall walls[], struct Position mouse) {
-    for (float i = 0; i < TWO_PI; i += step) {
+    for (double i = 0; i < TWO_PI; i += step) {
         // Calculate relative end position, the position where the ray would
         // end if no intersections were detected
-        struct FloatPosition end = {cos(i) * maximum_factor,
+        struct DoublePosition end = {cos(i) * maximum_factor,
                                     sin(i) * maximum_factor};
-        for (int j = 0; j < number_of_walls; ++j) {
+        for (int j = 0; j < NUMBER_OF_WALLS; ++j) {
             // For each wall, find intersection of two lines given two
             // points on each line
             struct Wall wall = walls[j];
-            const float denominator =
-                (float)((mouse.x - end.x) * (wall.start.y - wall.end.y)) -
+            const double denominator =
+                (double)((mouse.x - end.x) * (wall.start.y - wall.end.y)) -
                 ((mouse.y - end.y) * (wall.start.x - wall.end.x));
             if (denominator == 0) {
                 // The two lines are parallel or coincident
                 continue;
             }
-            const float t =
+            const double t =
                 ((mouse.x - wall.start.x) * (wall.start.y - wall.end.y) -
                  (mouse.y - wall.start.y) * (wall.start.x - wall.end.x)) /
                 denominator;
-            const float u = -1 *
+            const double u = -1 *
                             ((mouse.x - end.x) * (mouse.y - wall.start.y) -
                              (mouse.y - end.y) * (mouse.x - wall.start.x)) /
                             denominator;

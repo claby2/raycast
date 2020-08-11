@@ -26,7 +26,7 @@ void render_walls(struct Wall walls[]);
 
 void render_ray(struct Position position1, struct Position position2);
 
-void render_rays(const float step, const float maximum_factor,
+void render_rays(const double step, const double maximum_factor,
                  struct Wall walls[], struct Position mouse);
 
 // Render background and clear screen

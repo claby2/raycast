@@ -8,38 +8,31 @@
 #include "render.h"
 #include "wall.h"
 
-const float ray_density = 1000;
-const float step = (float)(1 / ray_density);
-struct Player player = {0, 0, 20, 20};
-struct Wall walls[number_of_walls];
-
-void generate_walls() {
-    for (size_t i = 0; i < number_of_walls; ++i) {
-        walls[i] = get_random_wall();
-    }
-}
-
 int main(int argv, char** args) {
-    srand(time(NULL));
-    generate_walls();
-    initialize();
+    const double RAY_DENSITY = 1000;
+    const double STEP = (double)(1 / RAY_DENSITY);
+    struct Player player = {0, 0, 20, 20};
+    struct Wall walls[NUMBER_OF_WALLS];
     struct Position previous_position = {0, 0};
     int first_render = 1;
+    srand(time(NULL));
+    generate_walls(walls);
+    initialize();
     while (!has_quit()) {
-        const struct Position mouse_position = get_mouse_position();
+        const struct Position MOUSE_POSITION = get_mouse_position();
         if ((first_render == 0) &&
-            positions_equal(mouse_position, previous_position)) {
+            positions_equal(MOUSE_POSITION, previous_position)) {
             continue;
         }
-        move(&player, mouse_position);
+        move(&player, MOUSE_POSITION);
         render_start();
-        // Maximum factor is an arbitrary value
-        const float maximum_factor = (window_width * window_height);
-        render_rays(step, maximum_factor, walls, mouse_position);
+        // Maximum factor is an arbitrary value relative to window dimensions
+        render_rays(STEP, (window_width * window_height), walls,
+                    MOUSE_POSITION);
         render_player(player);
         render_walls(walls);
         render_end();
-        previous_position = mouse_position;
+        previous_position = MOUSE_POSITION;
         first_render = 0;
     }
     close();
