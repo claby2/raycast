@@ -5,6 +5,6 @@
 #include "wall.h"
 
 extern struct Player player;
-extern struct Wall walls[10];
+extern struct Wall walls[];
 
 #endif

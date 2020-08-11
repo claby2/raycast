@@ -8,4 +8,7 @@ struct Wall {
     struct Position end;
 };
 
+// Return a wall with a random start and end position
+struct Wall get_random_wall();
+
 #endif

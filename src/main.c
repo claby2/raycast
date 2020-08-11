@@ -9,23 +9,16 @@
 #include "render.h"
 #include "wall.h"
 
+#define number_of_walls 10
+
 const float TWO_PI = 2 * M_PI;
 const float ray_density = 1000;
 struct Player player = {0, 0, 20, 20};
-struct Wall walls[10];
+struct Wall walls[number_of_walls];
 
 void generate_walls() {
-    // Get maximum position values from window dimensions
-    int maximum_x = window_width + 1;
-    int maximum_y = window_height + 1;
-    for (size_t i = 0; i < (sizeof(walls) / sizeof(walls[0])); ++i) {
-        struct Wall wall;
-        // Set a random position for wall start and end positions
-        wall.start.x = (rand() % maximum_x);
-        wall.start.y = (rand() % maximum_y);
-        wall.end.x = (rand() % maximum_x);
-        wall.end.y = (rand() % maximum_y);
-        walls[i] = wall;
+    for (size_t i = 0; i < number_of_walls; ++i) {
+        walls[i] = get_random_wall();
     }
 }
 
@@ -86,7 +79,7 @@ int main(int argv, char** args) {
             render_ray(player.position, line_end);
         }
         render_player(player);
-        render_walls(walls, (sizeof(walls) / sizeof(walls[0])));
+        render_walls(walls, number_of_walls);
         render_end();
         first_render = 0;
     }
