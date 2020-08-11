@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <math.h>
+#include <stddef.h>
 #include <stdio.h>
 
 #include "player.h"
@@ -78,7 +79,7 @@ void render_rays(const double step, const double maximum_factor,
         // Calculate relative end position, the position where the ray would
         // end if no intersections were detected
         struct DoublePosition end = {cos(i) * maximum_factor,
-                                    sin(i) * maximum_factor};
+                                     sin(i) * maximum_factor};
         for (int j = 0; j < NUMBER_OF_WALLS; ++j) {
             // For each wall, find intersection of two lines given two
             // points on each line
@@ -95,9 +96,9 @@ void render_rays(const double step, const double maximum_factor,
                  (mouse.y - wall.start.y) * (wall.start.x - wall.end.x)) /
                 denominator;
             const double u = -1 *
-                            ((mouse.x - end.x) * (mouse.y - wall.start.y) -
-                             (mouse.y - end.y) * (mouse.x - wall.start.x)) /
-                            denominator;
+                             ((mouse.x - end.x) * (mouse.y - wall.start.y) -
+                              (mouse.y - end.y) * (mouse.x - wall.start.x)) /
+                             denominator;
             if ((t > 0) && (t < 1) && (u > 0) && (u < 1)) {
                 // Lines intersect, calculate and update end point to be
                 // equal to intersection point

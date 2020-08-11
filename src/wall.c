@@ -1,5 +1,6 @@
 #include "wall.h"
 
+#include <stddef.h>
 #include <stdlib.h>
 
 #include "render.h"
