@@ -118,7 +118,7 @@ void render_start() {
 
 inline void render_end() { SDL_RenderPresent(renderer); }
 
-int has_quit() {
+const int has_quit() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
@@ -128,7 +128,7 @@ int has_quit() {
     return 0;
 }
 
-inline struct Position get_mouse_position() {
+inline const struct Position get_mouse_position() {
     int x;
     int y;
     SDL_GetMouseState(&x, &y);

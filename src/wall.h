@@ -11,6 +11,6 @@ struct Wall {
 };
 
 // Return a wall with a random start and end position
-struct Wall get_random_wall();
+const struct Wall get_random_wall();
 
 #endif

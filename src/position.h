@@ -12,6 +12,7 @@ struct FloatPosition {
 };
 
 // Check if the two given positions are equal
-int positions_equal(struct Position position1, struct Position position2);
+const int positions_equal(const struct Position position1,
+                          const struct Position position2);
 
 #endif

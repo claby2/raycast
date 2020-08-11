@@ -35,7 +35,7 @@ void render_start();
 // Present renderer
 void render_end();
 
-int has_quit();
+const int has_quit();
 
-struct Position get_mouse_position();
+const struct Position get_mouse_position();
 #endif
