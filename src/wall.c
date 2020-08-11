@@ -1,4 +1,7 @@
 #include "wall.h"
+
+#include <stdlib.h>
+
 #include "render.h"
 
 struct Wall get_random_wall() {

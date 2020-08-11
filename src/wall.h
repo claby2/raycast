@@ -3,6 +3,8 @@
 
 #include "position.h"
 
+#define number_of_walls 10
+
 struct Wall {
     struct Position start;
     struct Position end;
