@@ -9,15 +9,18 @@
 void test_positions_equal() {
     struct Position position1 = {1, 2};
     struct Position position2 = {2, 1};
-    assert(positions_equal(position1, position1));
-    assert(!(positions_equal(position1, position2)));
+    int check = positions_equal(position1, position1);
+    assert(check == 1);
+    check = positions_equal(position1, position2);
+    assert(check == 0);
 }
 
 void test_move() {
     struct Player player = {0, 0};
     struct Position new_position = {2, 2};
     move(&player, new_position);
-    assert(positions_equal(player.position, new_position));
+    int check = positions_equal(player.position, new_position);
+    assert(check == 1);
 }
 
 void test_get_random_wall() {
