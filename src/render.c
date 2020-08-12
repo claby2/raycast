@@ -23,12 +23,12 @@ SDL_Window* window = NULL;
 int window_width = 640;
 int window_height = 480;
 
-struct Color player_color = {255, 0, 0, 255};
-struct Color wall_color = {255, 255, 255, 255};
-struct Color ray_color = {32, 32, 32, 255};
-struct Color background_color = {0, 0, 0, 255};
+const struct Color PLAYER_COLOR = {255, 0, 0, 255};
+const struct Color WALL_COLOR = {255, 255, 255, 255};
+const struct Color RAY_COLOR = {32, 32, 32, 255};
+const struct Color BACKGROUND_COLOR = {0, 0, 0, 255};
 
-void set_color(struct Color color) {
+void set_color(const struct Color color) {
     SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue,
                            color.alpha);
 }
@@ -37,9 +37,9 @@ void initialize() {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
     SDL_ShowCursor(SDL_DISABLE);
-    window = SDL_CreateWindow("raycast", SDL_WINDOWPOS_UNDEFINED,
-                              SDL_WINDOWPOS_UNDEFINED, window_width,
-                              window_height, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow(
+        "raycast", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+        window_width, window_height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 }
 
@@ -51,15 +51,15 @@ void close() {
     SDL_Quit();
 }
 
-void render_player(struct Player player) {
-    set_color(player_color);
+void render_player(const struct Player player) {
+    set_color(PLAYER_COLOR);
     SDL_Rect rect = {player.position.x, player.position.y, player.width,
                      player.height};
     SDL_RenderDrawRect(renderer, &rect);
 }
 
 void render_walls(struct Wall walls[]) {
-    set_color(wall_color);
+    set_color(WALL_COLOR);
     for (size_t i = 0; i < NUMBER_OF_WALLS; ++i) {
         struct Wall wall = walls[i];
         SDL_RenderDrawLine(renderer, wall.start.x, wall.start.y, wall.end.x,
@@ -67,8 +67,9 @@ void render_walls(struct Wall walls[]) {
     }
 }
 
-void render_ray(struct Position position1, struct Position position2) {
-    set_color(ray_color);
+void render_ray(const struct Position position1,
+                const struct Position position2) {
+    set_color(RAY_COLOR);
     SDL_RenderDrawLine(renderer, position1.x, position1.y, position2.x,
                        position2.y);
 }
@@ -113,7 +114,7 @@ void render_rays(const double step, const double maximum_factor,
 }
 
 void render_start() {
-    set_color(background_color);
+    set_color(BACKGROUND_COLOR);
     SDL_RenderClear(renderer);
 }
 
