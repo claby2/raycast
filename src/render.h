@@ -18,7 +18,7 @@ extern int window_height;
 void initialize();
 
 // Close SDL2 window and renderer
-void close();
+void close_render();
 
 void render_player(struct Player player);
 

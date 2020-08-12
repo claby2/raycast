@@ -43,7 +43,7 @@ void initialize() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 }
 
-void close() {
+void close_render() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     renderer = NULL;

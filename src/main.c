@@ -35,5 +35,5 @@ int main(int argv, char** args) {
         previous_position = MOUSE_POSITION;
         first_render = 0;
     }
-    close();
+    close_render();
 }
