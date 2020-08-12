@@ -9,6 +9,7 @@
 #include "wall.h"
 
 int main(int argv, char** args) {
+    SDL_SetMainReady();
     const double RAY_DENSITY = 1000;
     const double STEP = (double)(1 / RAY_DENSITY);
     struct Player player = {0, 0, 20, 20};
