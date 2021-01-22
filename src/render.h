@@ -15,10 +15,10 @@ extern int window_width;
 extern int window_height;
 
 // Initialize SDL2 window and renderer
-void initialize();
+void initialize(void);
 
 // Close SDL2 window and renderer
-void close_render();
+void close_render(void);
 
 void render_player(struct Player player);
 
@@ -30,12 +30,12 @@ void render_rays(double step, double maximum_factor, struct Wall walls[],
                  struct Position mouse);
 
 // Render background and clear screen
-void render_start();
+void render_start(void);
 
 // Present renderer
-void render_end();
+void render_end(void);
 
-const int has_quit();
+const int has_quit(void);
 
-const struct Position get_mouse_position();
+const struct Position get_mouse_position(void);
 #endif

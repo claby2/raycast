@@ -5,7 +5,7 @@
 
 #include "render.h"
 
-const struct Wall get_random_wall() {
+const struct Wall get_random_wall(void) {
     // Get maximum position values from window dimensions
     int maximum_x = window_width + 1;
     int maximum_y = window_height + 1;

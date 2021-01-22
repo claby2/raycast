@@ -33,7 +33,7 @@ void set_color(const struct Color color) {
                            color.alpha);
 }
 
-void initialize() {
+void initialize(void) {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
     SDL_ShowCursor(SDL_DISABLE);
@@ -43,7 +43,7 @@ void initialize() {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 }
 
-void close_render() {
+void close_render(void) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     renderer = NULL;
@@ -113,14 +113,14 @@ void render_rays(const double step, const double maximum_factor,
     }
 }
 
-void render_start() {
+void render_start(void) {
     set_color(BACKGROUND_COLOR);
     SDL_RenderClear(renderer);
 }
 
-inline void render_end() { SDL_RenderPresent(renderer); }
+inline void render_end(void) { SDL_RenderPresent(renderer); }
 
-const int has_quit() {
+const int has_quit(void) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
@@ -130,7 +130,7 @@ const int has_quit() {
     return 0;
 }
 
-inline const struct Position get_mouse_position() {
+inline const struct Position get_mouse_position(void) {
     int x;
     int y;
     SDL_GetMouseState(&x, &y);
