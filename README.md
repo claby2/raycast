@@ -6,27 +6,15 @@
 
 ### Dependencies
 
-+ [SDL2](http://libsdl.org/download-2.0.php)
-+ CMake
+*   [SDL2](http://libsdl.org/download-2.0.php)
+*   CMake
 
 ### Usage
 
-```
-git clone https://github.com/claby2/raycast.git
-cd raycast
-cmake .
-make
-raycast
-```
-
-## Testing
-
-Testing uses `assert.h` which is part of the standard library.
-
-```
-git clone https://github.com/claby2/raycast.git
-cd raycast
-cmake .
-make raycast_test
-raycast_test
-```
+    $ git clone https://github.com/claby2/raycast.git
+    $ cd raycast
+    $ mkdir build
+    $ cd build
+    $ cmake ..
+    $ make
+    $ ./raycast
